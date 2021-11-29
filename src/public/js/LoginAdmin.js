@@ -1,6 +1,7 @@
 "use strict";
+//const jwt = require("jsonwebtoken");
 
-async function loginUser() {
+async function loginAdmin() {
   var alert = document.getElementById("errortxt");
   var email = document.getElementById("inpt_email").value;
   var password = document.getElementById("inpt_password").value;
@@ -16,6 +17,11 @@ async function loginUser() {
   } else if (response.status == 200) {
     let token = response.message.token;
     localStorage.setItem("token", token);
-    window.location.replace("/home");
+    var decoded = jwt_decode(token);
+    if (decoded.role.includes("admin")) {
+      window.location.replace("/adminpanel/media");
+    } else {
+      window.alert("Invalid role");
+    }
   }
 }

@@ -17,6 +17,7 @@
     <script src="../js/utils.js"></script>
     <script src="../js/ajax_handler.js"></script>
     <script src="../js/Navbar.js"></script>
+    <script src="../js/Home.js"></script>
 
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
@@ -103,108 +104,11 @@
       </div>
       <div class="content my-4">
         <div class="content-col">
-          <h2>El <span class="text-yellow">top 5</span> semanal</h2>
-          <div class="content-row">
-             
-            <div class="swiper mySwiper my-2">
-              <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                  <a href="movie_detail.html">
-                    <img
-                      src="https://i.pinimg.com/originals/bc/d5/c9/bcd5c9519581acc60bd60a429ab0c88f.jpg"
-                      alt=""
-                      class="movieCover"
-                    />
-                  </a>
-                </div>
-                <div class="swiper-slide">
-                  <img
-                    src="https://m.media-amazon.com/images/M/MV5BNzQxNTIyODAxMV5BMl5BanBnXkFtZTgwNzQyMDA3OTE@._V1_.jpg"
-                    alt=""
-                    class="movieCover"
-                  />
-                </div>
-                <div class="swiper-slide">
-                  <img
-                    src="https://m.media-amazon.com/images/I/71sgsn-zXPL._AC_SY741_.jpg"
-                    alt=""
-                    class="movieCover"
-                  />
-                </div>
-                <div class="swiper-slide">
-                  <img
-                    src="https://www.u-buy.jp/productimg/?image=aHR0cHM6Ly9tLm1lZGlhLWFtYXpvbi5jb20vaW1hZ2VzL0kvNzFpNkwxdlpqaUwuX0FDX1NMMTA1OF8uanBn.jpg"
-                    alt=""
-                    class="movieCover"
-                  />
-                </div>
-                <div class="swiper-slide">
-                  <img
-                    src="https://assets.mubicdn.net/images/notebook/post_images/19893/images-w1400.jpg?1449196747"
-                    alt=""
-                    class="movieCover"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="content-col">
           <h2>Mi <span class="text-yellow">historial</span></h2>
           <div class="content-row">
              
             <div class="swiper mySwiper my-2">
-              <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                  <img
-                    src="https://i.pinimg.com/originals/bc/d5/c9/bcd5c9519581acc60bd60a429ab0c88f.jpg"
-                    alt=""
-                    class="movieCover"
-                  />
-                </div>
-                <div class="swiper-slide">
-                  <img
-                    src="https://m.media-amazon.com/images/M/MV5BNzQxNTIyODAxMV5BMl5BanBnXkFtZTgwNzQyMDA3OTE@._V1_.jpg"
-                    alt=""
-                    class="movieCover"
-                  />
-                </div>
-                <div class="swiper-slide">
-                  <img
-                    src="https://m.media-amazon.com/images/I/71sgsn-zXPL._AC_SY741_.jpg"
-                    alt=""
-                    class="movieCover"
-                  />
-                </div>
-                <div class="swiper-slide">
-                  <img
-                    src="https://www.u-buy.jp/productimg/?image=aHR0cHM6Ly9tLm1lZGlhLWFtYXpvbi5jb20vaW1hZ2VzL0kvNzFpNkwxdlpqaUwuX0FDX1NMMTA1OF8uanBn.jpg"
-                    alt=""
-                    class="movieCover"
-                  />
-                </div>
-                <div class="swiper-slide">
-                  <img
-                    src="https://assets.mubicdn.net/images/notebook/post_images/19893/images-w1400.jpg?1449196747"
-                    alt=""
-                    class="movieCover"
-                  />
-                </div>
-                <div class="swiper-slide">
-                  <img
-                    src="https://m.media-amazon.com/images/I/61Fm+N+NncL._AC_SL1008_.jpg"
-                    alt=""
-                    class="movieCover"
-                  />
-                </div>
-                <div class="swiper-slide">
-                  <img
-                    src="https://www.adweek.com/wp-content/uploads/2020/04/social-distance-movies-bad-boy-2020.jpg"
-                    alt=""
-                    class="movieCover"
-                  />
-                </div>
-              </div>
+              <div class="swiper-wrapper" id="myHistory"></div>
               <div class="swiper-pagination"></div>
             </div>
           </div>
@@ -212,60 +116,64 @@
         <div class="content-col">
           <h2>Películas de <span class="text-yellow">Comedia</span></h2>
           <div class="content-row">
-             
             <div class="swiper mySwiper my-2">
-              <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                  <img
-                    src="https://i.pinimg.com/originals/bc/d5/c9/bcd5c9519581acc60bd60a429ab0c88f.jpg"
-                    alt=""
-                    class="movieCover"
-                  />
-                </div>
-                <div class="swiper-slide">
-                  <img
-                    src="https://m.media-amazon.com/images/M/MV5BNzQxNTIyODAxMV5BMl5BanBnXkFtZTgwNzQyMDA3OTE@._V1_.jpg"
-                    alt=""
-                    class="movieCover"
-                  />
-                </div>
-                <div class="swiper-slide">
-                  <img
-                    src="https://m.media-amazon.com/images/I/71sgsn-zXPL._AC_SY741_.jpg"
-                    alt=""
-                    class="movieCover"
-                  />
-                </div>
-                <div class="swiper-slide">
-                  <img
-                    src="https://www.u-buy.jp/productimg/?image=aHR0cHM6Ly9tLm1lZGlhLWFtYXpvbi5jb20vaW1hZ2VzL0kvNzFpNkwxdlpqaUwuX0FDX1NMMTA1OF8uanBn.jpg"
-                    alt=""
-                    class="movieCover"
-                  />
-                </div>
-                <div class="swiper-slide">
-                  <img
-                    src="https://assets.mubicdn.net/images/notebook/post_images/19893/images-w1400.jpg?1449196747"
-                    alt=""
-                    class="movieCover"
-                  />
-                </div>
-                <div class="swiper-slide">
-                  <img
-                    src="https://m.media-amazon.com/images/I/61Fm+N+NncL._AC_SL1008_.jpg"
-                    alt=""
-                    class="movieCover"
-                  />
-                </div>
-                <div class="swiper-slide">
-                  <img
-                    src="https://www.adweek.com/wp-content/uploads/2020/04/social-distance-movies-bad-boy-2020.jpg"
-                    alt=""
-                    class="movieCover"
-                  />
-                </div>
-              </div>
-              <div class="swiper-pagination"></div>
+              <div class="swiper-wrapper" id="rowComedy"></div>
+            </div>
+          </div>
+        </div>
+        <div class="content-col">
+          <h2>Películas de <span class="text-yellow">Acción</span></h2>
+          <div class="content-row">
+            <div class="swiper mySwiper my-2">
+              <div class="swiper-wrapper" id="rowAction"></div>
+            </div>
+          </div>
+        </div>
+        <div class="content-col">
+          <h2><span class="text-yellow">Documentales</span></h2>
+          <div class="content-row">
+            <div class="swiper mySwiper my-2">
+              <div class="swiper-wrapper" id="rowDocumentary"></div>
+            </div>
+          </div>
+        </div>
+        <div class="content-col">
+          <h2>Películas de <span class="text-yellow">Drama</span></h2>
+          <div class="content-row">
+            <div class="swiper mySwiper my-2">
+              <div class="swiper-wrapper" id="rowDrama"></div>
+            </div>
+          </div>
+        </div>
+        <div class="content-col">
+          <h2>Películas de <span class="text-yellow">Horror</span></h2>
+          <div class="content-row">
+            <div class="swiper mySwiper my-2">
+              <div class="swiper-wrapper" id="rowHorror"></div>
+            </div>
+          </div>
+        </div>
+        <div class="content-col">
+          <h2>Películas de <span class="text-yellow">Musica</span></h2>
+          <div class="content-row">
+            <div class="swiper mySwiper my-2">
+              <div class="swiper-wrapper" id="rowMusic"></div>
+            </div>
+          </div>
+        </div>
+        <div class="content-col">
+          <h2>Películas de <span class="text-yellow">Romance</span></h2>
+          <div class="content-row">
+            <div class="swiper mySwiper my-2">
+              <div class="swiper-wrapper" id="rowRomance"></div>
+            </div>
+          </div>
+        </div>
+        <div class="content-col">
+          <h2>Series <span class="text-yellow"> de TV</span></h2>
+          <div class="content-row">
+            <div class="swiper mySwiper my-2">
+              <div class="swiper-wrapper" id="rowTV"></div>
             </div>
           </div>
         </div>

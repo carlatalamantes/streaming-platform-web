@@ -5,7 +5,6 @@ const { body, validationResult } = require("express-validator");
 const Bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const { verify } = require("jsonwebtoken");
-
 /**
  * AUTH VALIDATIONS
  */
@@ -13,12 +12,21 @@ function isAuth(req, res, next) {
   const token = req.header("auth-token");
   if (!token) return res.status(401).send({ error: "Access denied" });
 
-  try {
-    const verified = verify(token, "secretkey");
-    req.user = verified;
+  if (verify(token, "secretkey")) {
     next();
-  } catch (err) {
+  } else {
     res.status(400).send({ error: "Invalid token" });
+  }
+}
+
+function validateAdmin(req, res, next) {
+  const token = req.header("auth-token");
+  var decoded = jwt.decode(token);
+
+  if (decoded.role.includes("admin")) {
+    next();
+  } else {
+    res.status(403).type("text/plain").send("Unauthorized");
   }
 }
 
@@ -44,7 +52,7 @@ router
         return res.status(401).send({ error: "The password is invalid" });
       }
 
-      jwt.sign({ id: user._id }, "secretkey", (err, token) => {
+      jwt.sign({ id: user._id, role: user.role }, "secretkey", (err, token) => {
         return res
           .json({
             token,
@@ -96,13 +104,18 @@ router
 
 //GET - User's profile
 router.route("/user/profile").get(isAuth, async (req, res) => {
-  let id = req.user.id;
+  const token = req.header("auth-token");
+  var decoded = jwt.decode(token);
+  let id = decoded.id;
   if (id !== undefined) {
     var user = await User.findOne({ _id: id });
     if (user) {
-      return res
-        .status(200)
-        .send({ name: user.name, lastname: user.lastname, email: user.email });
+      return res.status(200).send({
+        name: user.name,
+        lastname: user.lastname,
+        email: user.email,
+        history: user.history,
+      });
     } else {
       res.type("text/plain").status(404).send(`User not found.`);
     }
@@ -113,21 +126,20 @@ router.route("/user/profile").get(isAuth, async (req, res) => {
 
 //DELETE - User's profile
 router.route("/user/profile").delete(isAuth, async (req, res) => {
-  let id = req.user.id;
-  if (id !== undefined) {
-    await User.deleteOne({ _id: id })
-      .then(() => {
-        return res.status(200).send({
-          message: "User was successfully deleted",
-        });
-      })
-      .catch((err) => {
-        res.status(400).json({
-          error: err,
-        });
+  const token = req.header("auth-token");
+  var decoded = jwt.decode(token);
+  let id = decoded.id;
+  try {
+    let count = await User.deleteOne({ _id: id });
+    if (count.deletedCount == 0) {
+      res.status(400).json({ error: "Delete count is 0" });
+    } else {
+      return res.status(200).send({
+        message: "User was successfully deleted",
       });
-  } else {
-    res.status(400).type("text/plain").send({ error: "Something went wrong" });
+    }
+  } catch (error) {
+    res.status(400).json("Something went wrong");
   }
 });
 
@@ -140,7 +152,9 @@ router
       .withMessage("Password must be 5 chars minimum."),
     isAuth,
     async (req, res) => {
-      let id = req.user.id;
+      const token = req.header("auth-token");
+      var decoded = jwt.decode(token);
+      let id = decoded.id;
       if (id !== undefined) {
         req.body.password = Bcrypt.hashSync(req.body.password, 10);
         var user = await User.findOneAndUpdate(
@@ -162,5 +176,60 @@ router
       }
     }
   );
+
+router.route("/user/users").get(validateAdmin, async (req, res) => {
+  await User.find()
+    .then((response) => {
+      res.send(response).status(200);
+    })
+    .catch((err) => {
+      res.json(err.message).status(400);
+    });
+});
+
+router.route("/user/:id").delete(validateAdmin, async (req, res) => {
+  const token = req.header("auth-token");
+  var decoded = jwt.decode(token);
+  let loggedid = decoded.id;
+  let id = req.params.id;
+
+  try {
+    if (loggedid == id) {
+      res.status(400).json({ error: "You cannot delete your own account" });
+    } else {
+      let count = await User.deleteOne({ _id: id });
+      if (count.deletedCount == 0) {
+        res.status(400).json({ error: "Delete count is 0" });
+      } else {
+        return res.status(200).send({
+          message: "User was successfully deleted",
+        });
+      }
+    }
+  } catch (error) {
+    res.status(400).json("Something went wrong");
+  }
+});
+
+router.route("/user/profile").put(isAuth, async (req, res) => {
+  const token = req.header("auth-token");
+  var decoded = jwt.decode(token);
+  let id = decoded.id;
+  let data = req.body;
+
+  User.findOneAndUpdate(
+    { _id: id, "user.history": { $ne: data.history } },
+    { $push: { history: data.history } },
+    { upsert: true }
+  )
+    .then((response) => {
+      return res
+        .send({ message: "Movie succesfully added to history." })
+        .status(200);
+    })
+    .catch((error) => {
+      return res.send({ error: error }).status(500);
+    });
+});
 
 module.exports = router;

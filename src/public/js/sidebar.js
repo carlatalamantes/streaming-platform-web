@@ -3,3 +3,7 @@ $(document).ready(function () {
     $("#sidebar").toggleClass("active");
   });
 });
+
+function adminLogout() {
+  logout();
+}

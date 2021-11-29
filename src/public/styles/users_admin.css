@@ -48,6 +48,9 @@ input {
   justify-content: center;
 }
 
+.table {
+  color: white;
+}
 /* Mobiles and Tablets */
 @media (min-width: 320px) and (max-width: 1024px) {
   .containerBarButton {
