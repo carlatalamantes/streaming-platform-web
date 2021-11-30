@@ -17,7 +17,7 @@ async function connectToDB() {
     "mongodb+srv://admin:justinbieber@clusternetflixclone.enidg.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
   );
 
-  console.log(ret === mongoose);
+  console.log("Data base connection: ", ret === mongoose);
 }
 
 /**
