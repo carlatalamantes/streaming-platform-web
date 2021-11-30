@@ -12,16 +12,13 @@ const bodyParser = require("body-parser");
 /**
  * CONNECTING TO DATABASE
  */
-mongoose.connect(
-  "mongodb+srv://admin:justinbieber@clusternetflixclone.enidg.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
-  {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  },
-  () => {
-    console.log("Connected to DB");
-  }
-);
+async function connectToDB() {
+  const ret = await mongoose.connect(
+    "mongodb+srv://admin:justinbieber@clusternetflixclone.enidg.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+  );
+
+  console.log(ret === mongoose);
+}
 
 /**
  * SETTINGS
@@ -29,6 +26,7 @@ mongoose.connect(
 
 const app = express();
 app.listen(process.env.PORT || 3000, () => console.log("Server is running..."));
+connectToDB();
 
 /**
  * MIDDLEWARES
