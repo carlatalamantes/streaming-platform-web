@@ -1,13 +1,10 @@
 "use strict";
 
 const express = require("express");
-const cors = require("cors");
 const path = require("path");
 const mongoose = require("mongoose");
-const flash = require("connect-flash");
 const morgan = require("morgan");
 const cookieParser = require("cookie-parser");
-const session = require("express-session");
 const { url } = require("./config/database");
 const router = require("./app/routes/routes");
 const bodyParser = require("body-parser");
@@ -16,7 +13,7 @@ const bodyParser = require("body-parser");
  * CONNECTING TO DATABASE
  */
 mongoose.connect(
-  url,
+  "mongodb+srv://admin:justinbieber@clusternetflixclone.enidg.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
