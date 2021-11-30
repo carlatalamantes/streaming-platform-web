@@ -33,7 +33,11 @@ async function createReview() {
 
 async function getReview() {
   let id = window.location.pathname.split("/")[2];
-  let response = await reviewHandler(urlAPI, localStorage.getItem("token"), id);
+  let response = await getreviewsHandler(
+    urlAPI,
+    localStorage.getItem("token"),
+    id
+  );
   if (response.status == 200) {
     reviewListToHtml(response.message);
   } else {

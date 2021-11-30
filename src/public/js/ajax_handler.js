@@ -169,7 +169,7 @@ async function reviewHandler(url, token, data) {
   return { status: response.status, message: await response.json() };
 }
 
-async function reviewHandler(url, token, id) {
+async function getreviewsHandler(url, token, id) {
   const response = await fetch(`${url}/review/${id}`, {
     method: "GET",
     headers: {

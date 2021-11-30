@@ -152,7 +152,6 @@ function filterMovies() {
   }
   let data = localStorage.getItem("movielistAdmin");
   let parsedData = JSON.parse(data);
-  console.log(value);
 
   let filteredResults = [];
   parsedData.find((movie) => {

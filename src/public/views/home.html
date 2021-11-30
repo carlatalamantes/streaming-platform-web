@@ -95,14 +95,14 @@
     <div class="containerHome">
       <div class="banner">
         <div class="mb-3">
-          <label for="inpt_email" class="form-label"
+          <label for="inpt_search" class="form-label"
             >Busca películas, series o documentales</label
           >
-          <input type="email" class="form-control" id="inpt_email" />
+          <input type="text" class="form-control" id="inpt_search" />
         </div>
-        <button type="submit">BUSCAR</button>
+        <button type="button" onclick="searchMovies()">BUSCAR</button>
       </div>
-      <div class="content my-4">
+      <div class="content my-4" id="bigContainer">
         <div class="content-col">
           <h2>Mi <span class="text-yellow">historial</span></h2>
           <div class="content-row">
@@ -196,25 +196,9 @@
         <li class="ms-3">
           <a
             class="text-muted"
-            href="#"
+            href="/home"
             style="color: white !important; text-decoration: none"
-            >Películas</a
-          >
-        </li>
-        <li class="ms-3">
-          <a
-            class="text-muted"
-            href="#"
-            style="color: white !important; text-decoration: none"
-            >Series</a
-          >
-        </li>
-        <li class="ms-3">
-          <a
-            class="text-muted"
-            href="#"
-            style="color: white !important; text-decoration: none"
-            >Mi Perfil</a
+            >Inicio</a
           >
         </li>
       </ul>

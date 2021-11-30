@@ -217,11 +217,7 @@ router.route("/user/profile").put(isAuth, async (req, res) => {
   let id = decoded.id;
   let data = req.body;
 
-  User.findOneAndUpdate(
-    { _id: id, "user.history": { $ne: data.history } },
-    { $push: { history: data.history } },
-    { upsert: true }
-  )
+  User.findOneAndUpdate({ _id: id }, { $addToSet: { history: data.history } })
     .then((response) => {
       return res
         .send({ message: "Movie succesfully added to history." })

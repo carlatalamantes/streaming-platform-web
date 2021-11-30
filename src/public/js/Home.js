@@ -80,3 +80,27 @@ async function getHistory() {
     });
   }
 }
+
+function searchMovies() {
+  let value = document.getElementById("inpt_search").value;
+  if (value == "") {
+    getContent();
+    getHistory();
+    return;
+  }
+
+  let data = localStorage.getItem("movielist");
+  let parsedData = JSON.parse(data);
+
+  let filteredResults = [];
+  parsedData.find((movie) => {
+    if (movie.title.toLowerCase() === value.toLowerCase()) {
+      filteredResults.push(movie);
+    }
+  });
+  if (filteredResults.length > 0) {
+    window.open(`/movie-detail/${filteredResults[0]._id}`);
+  } else {
+    window.alert("No hay resultados con este título.");
+  }
+}
