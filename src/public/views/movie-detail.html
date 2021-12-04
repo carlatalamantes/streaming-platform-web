@@ -116,7 +116,13 @@
           <h3>Actores</h3>
           <p id="movieActors"></p>
           <div>
-            <button type="button" onclick="playMovie()" id="playMovie">
+            <button
+              type="button"
+              onclick="playMovie()"
+              id="playMovie"
+              data-bs-toggle="modal"
+              data-bs-target="#movieVideo"
+            >
               INICIAR
             </button>
           </div>
@@ -204,6 +210,27 @@
           <div class="modal-footer">
             <button type="button" onclick="createReview()">Guardar</button>
           </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="modal fade"
+      id="movieVideo"
+      tabindex="-1"
+      aria-labelledby="movieVideo"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body" id="modalVideoBody"></div>
         </div>
       </div>
     </div>

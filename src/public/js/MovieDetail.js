@@ -43,11 +43,16 @@ async function getMovie() {
 async function playMovie() {
   let movieid = window.location.pathname.split("/")[2];
   let url = document.getElementById("playMovie").value;
+  document.getElementById("modalVideoBody").innerHTML =
+    " <iframe  id='frame' name='frame' src='" +
+    url +
+    "' width='100%'  height='315'   allowfullscreen></iframe>";
+
   let response = await historyHandler(urlAPI, localStorage.getItem("token"), {
     history: movieid,
   });
 
-  window.open(url);
+  // window.open(url);
 }
 
 function playTrailer() {
